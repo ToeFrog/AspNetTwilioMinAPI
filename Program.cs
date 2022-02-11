@@ -9,8 +9,6 @@ app.MapGet("/", () => {
     return "Hello, world!";
 });
 
-app.Run();
-
 // SMS endpoint returning hand written TwiML
 app.MapPost("/sms", () => {
     var response = @"
