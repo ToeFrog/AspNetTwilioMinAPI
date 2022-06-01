@@ -1,6 +1,5 @@
-using System.Globalization;
 using Twilio.TwiML;
-using Twilio.TwiML.Messaging;
+using Twilio.AspNet.Core.MinimalApi;
 
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
@@ -24,30 +23,28 @@ app.MapPost("/sms", () => {
 // the TwiML response
 // app.MapPost("/sms", () => {
 //     var response = new MessagingResponse();
-//     response.Append(new Message(
-//         body: $"Thanks for messaging my dotnet minimal api!"
-//     ));
+//     response.Message("Hello from a .NET Minimal API!");
 
-//     return Results.Text(response.ToString(), "application/xml");
+//     return Results.Extensions.TwiML(response);
 // });
 
-// Voice endpoing returning hand written TwiML
+// Voice endpoint returning hand written TwiML
 app.MapPost("/voice", () => {
     var response = @"
         <Response>
-            <Say>Thanks for calling my dotnet minimal api!</Say>
+            <Say>Thanks for calling my .NET Minimal API!</Say>
         </Response>";
 
     return Results.Text(response, "application/xml");
 });
 
-// Voice enpoint using the Twilio library to build
+// Voice endpoint using the Twilio library to build
 // the TwiML response
 // app.MapPost("/voice", () => {
 //     var response = new VoiceResponse();
-//     response.Say("Thanks for calling my dotnet minimal api!");
+//     response.Say("Thanks for calling my .NET Minimal API!");
 
-//     return Results.Text(response.ToString(), "application/xml");
+//     return Results.Extensions.TwiML(response);
 // });
 
 app.Run();
